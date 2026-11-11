@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMM PRO | منصة التسويق الرقمي</title>
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Tahoma, Arial, sans-serif;
+}
+
+:root {
+    --bg: #07111f;
+    --card: #101f32;
+    --blue: #18baff;
+    --teal: #00d6c0;
+    --white: #f4f8ff;
+    --muted: #9aabc0;
+}
+
+body {
+    background: var(--bg);
+    color: var(--white);
+    line-height: 1.7;
+}
+
+header {
+    padding: 18px 6%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #1d3045;
+    background: #091626;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    color: var(--blue);
+}
+
+.logo span {
+    color: white;
+}
+
+nav {
+    display: flex;
+    gap: 22px;
+}
+
+nav a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 14px;
+}
+
+nav a:hover {
+    color: var(--blue);
+}
+
+.login {
+    background: linear-gradient(135deg, var(--blue), var(--teal));
+    color: #04121e;
+    padding: 10px 20px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.hero {
+    padding: 85px 7%;
+    text-align: center;
+    background:
+    radial-gradient(ellipse at top, #123c59 0%, transparent 65%);
+}
+
+.badge {
+    display: inline-block;
+    padding: 7px 17px;
+    border: 1px solid #1c6885;
+    color: var(--teal);
+    border-radius: 30px;
+    font-size: 13px;
+    margin-bottom: 22px;
+}
+
+.hero h1 {
+    font-size: clamp(30px, 6vw, 53px);
+    line-height: 1.4;
+    margin-bottom: 18px;
+}
+
+.hero h1 span {
+    color: var(--blue);
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 600px;
+    margin: auto;
+    font-size: 16px;
+}
+
+.hero-buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 13px 25px;
+    border-radius: 9px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.primary {
+    background: linear-gradient(135deg, var(--blue), var(--teal));
+    color: #04121e;
+}
+
+.secondary {
+    border: 1px solid #34516d;
+    color: white;
+}
+
+.stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    padding: 20px 7% 55px;
+    max-width: 1000px;
+    margin: auto;
+}
+
+.stat {
+    background: var(--card);
+    border: 1px solid #1d3045;
+    padding: 22px;
+    text-align: center;
+    border-radius: 14px;
+}
+
+.stat h2 {
+    color: var(--blue);
+    font-size: 27px;
+}
+
+.stat p {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+section.content {
+    padding: 55px 7%;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.section-title h2 {
+    font-size: 29px;
+    margin-bottom: 8px;
+}
+
+.section-title p {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+.services {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+    gap: 17px;
+    max-width: 1150px;
+    margin: auto;
+}
+
+.service {
+    background: var(--card);
+    border: 1px solid #1d3045;
+    border-radius: 15px;
+    padding: 24px;
+    transition: .3s;
+}
+
+.service:hover {
+    transform: translateY(-5px);
+    border-color: var(--blue);
+}
+
+.icon {
+    font-size: 31px;
+    margin-bottom: 12px;
+}
+
+.service h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+}
+
+.service p {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.service a {
+    display: inline-block;
+    margin-top: 16px;
+    color: var(--teal);
+    text-decoration: none;
+    font-size: 13px;
+}
+
+.banner {
+    margin: 20px 7% 65px;
+    padding: 35px 20px;
+    text-align: center;
+    border-radius: 18px;
+    background: linear-gradient(120deg, #103c5b, #075b65);
+}
+
+.banner h2 {
+    font-size: 25px;
+    margin-bottom: 10px;
+}
+
+.banner p {
+    color: #d4e8f1;
+    font-size: 14px;
+}
+
+footer {
+    padding: 30px 7%;
+    text-align: center;
+    border-top: 1px solid #1d3045;
+    color: var(--muted);
+    font-size: 13px;
+}
+
+footer strong {
+    color: var(--blue);
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000b;
+    z-index: 10;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.modal-box {
+    background: var(--card);
+    border: 1px solid #34516d;
+    padding: 28px;
+    border-radius: 16px;
+    max-width: 380px;
+    width: 100%;
+    text-align: center;
+}
+
+.modal-box p {
+    color: var(--muted);
+    margin: 12px 0 20px;
+}
+
+.close {
+    background: transparent;
+    color: white;
+    border: 1px solid #34516d;
+    padding: 9px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+@media(max-width:650px) {
+    nav {
+        display: none;
+    }
+
+    header {
+        padding: 15px 5%;
+    }
+
+    .hero {
+        padding: 65px 6%;
+    }
+
+    .stats {
+        padding: 10px 5% 40px;
+        gap: 8px;
+    }
+
+    .stat {
+        padding: 13px 5px;
+    }
+
+    .stat h2 {
+        font-size: 21px;
+    }
+
+    .stat p {
+        font-size: 11px;
+    }
+
+    section.content {
+        padding: 40px 5%;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">SMM <span>PRO</span></div>
+
+    <nav>
+        <a href="#home">الرئيسية</a>
+        <a href="#services">الخدمات</a>
+        <a href="#about">من نحن</a>
+        <a href="#contact">تواصل معنا</a>
+    </nav>
+
+    <button class="login" onclick="openLogin()">دخول / تسجيل</button>
+</header>
+
+<main>
+
+<div class="hero" id="home">
+    <div class="badge">منصتك للتسويق الرقمي</div>
+
+    <h1>
+        ارتقِ بحضورك الرقمي<br>
+        مع <span>SMM PRO</span>
+    </h1>
+
+    <p>
+        منصة تجمع لك خدمات التسويق وإدارة الحسابات
+        وصناعة المحتوى في مكان واحد، لتساعدك على
+        تطوير حضورك على منصات التواصل الاجتماعي.
+    </p>
+
+    <div class="hero-buttons">
+        <a href="#services" class="btn primary">اكتشف الخدمات</a>
+        <a href="#about" class="btn secondary">اعرف المزيد</a>
+    </div>
+</div>
+
+<div class="stats">
+    <div class="stat">
+        <h2>10+</h2>
+        <p>منصات اجتماعية</p>
+    </div>
+
+    <div class="stat">
+        <h2>24/7</h2>
+        <p>إمكانية تصفح الخدمات</p>
+    </div>
+
+    <div class="stat">
+        <h2>PRO</h2>
+        <p>تجربة رقمية متطورة</p>
+    </div>
+</div>
+
+<section class="content" id="services">
+
+    <div class="section-title">
+        <h2>استكشف خدماتنا</h2>
+        <p>حلول رقمية تساعدك على تطوير أعمالك وحضورك الإلكتروني</p>
+    </div>
+
+    <div class="services">
+
+        <div class="service">
+            <div class="icon">🎵</div>
+            <h3>TikTok</h3>
+            <p>صناعة المحتوى وإدارة الحسابات وتحليل الأداء.</p>
+            <a href="#" onclick="showInfo(event)">استكشف الخدمات ←</a>
+        </div>
+
+        <div class="service">
+            <div class="icon">📸</div>
+            <h3>Instagram</h3>
+            <p>تصميم المنشورات وإدارة الحسابات والمحتوى.</p>
+            <a href="#" onclick="showInfo(event)">استكشف الخدمات ←</a>
+        </div>
+
+        <div class="service">
+            <div class="icon">▶️</div>
+            <h3>YouTube</h3>
+            <p>تحسين القنوات وإنتاج الفيديوهات وتحليل الأداء.</p>
+            <a href="#" onclick="showInfo(event)">استكشف الخدمات ←</a>
+        </div>
+
+        <div class="service">
+            <div class="icon">𝕏</div>
+            <h3>X / Twitter</h3>
+            <p>إدارة الحسابات وكتابة المحتوى وتحسين الهوية.</p>
+            <a href="#" onclick="showInfo(event)">استكشف الخدمات ←</a>
+        </div>
+
+        <div class="service">
+            <div class="icon">👥</div>
+            <h3>Facebook</h3>
+            <p>إدارة الصفحات وتصميم الحملات التسويقية.</p>
+            <a href="#" onclick="showInfo(event)">استكشف الخدمات ←</a>
+        </div>
+
+        <div class="service">
+            <div class="icon">✈️</div>
+            <h3>Telegram</h3>
+            <p>إدارة القنوات وإعداد المحتوى وتنظيم المجتمعات.</p>
+            <a href="#" onclick="showInfo(event)">استكشف الخدمات ←</a>
+        </div>
+
+        <div class="service">
+            <div class="icon">👻</div>
+            <h3>Snapchat</h3>
+            <p>تصميم القصص وإعداد المحتوى الإعلاني.</p>
+            <a href="#" onclick="showInfo(event)">استكشف الخدمات ←</a>
+        </div>
+
+        <div class="service">
+            <div class="icon">🎮</div>
+            <h3>Twitch</h3>
+            <p>تصميم الهوية البصرية وتحسين قنوات البث.</p>
+            <a href="#" onclick="showInfo(event)">استكشف الخدمات ←</a>
+        </div>
+
+        <div class="service">
+            <div class="icon">🎧</div>
+            <h3>Spotify</h3>
+            <p>تصميم الأغلفة وتحسين الهوية الموسيقية.</p>
+            <a href="#" onclick="showInfo(event)">استكشف الخدمات ←</a>
+        </div>
+
+        <div class="service">
+            <div class="icon">🧵</div>
+            <h3>Threads</h3>
+            <p>إعداد المنشورات وإدارة الحضور الرقمي.</p>
+            <a href="#" onclick="showInfo(event)">استكشف الخدمات ←</a>
+        </div>
+
+    </div>
+</section>
+
+<div class="banner" id="about">
+    <h2>ابدأ رحلتك الرقمية مع SMM PRO</h2>
+    <p>حلول تسويقية منظمة، وتجربة سهلة، وخدمات قابلة للتطوير.</p>
+</div>
+
+</main>
+
+<footer id="contact">
+    <p><strong>SMM PRO</strong> — منصتك للتسويق الرقمي</p>
+    <p>© 2026 جميع الحقوق محفوظة</p>
+</footer>
+
+<div class="modal" id="loginModal">
+    <div class="modal-box">
+        <h2>مرحباً بك في SMM PRO</h2>
+        <p>سيتم تفعيل التسجيل والدخول بعد ربط قاعدة البيانات.</p>
+        <button class="close" onclick="closeLogin()">إغلاق</button>
+    </div>
+</div>
+
+<script>
+function openLogin() {
+    document.getElementById("loginModal").style.display = "flex";
+}
+
+function closeLogin() {
+    document.getElementById("loginModal").style.display = "none";
+}
+
+function showInfo(event) {
+    event.preventDefault();
+    alert("سيتم إضافة تفاصيل الخدمات قريباً.");
+}
+</script>
+
+</body>
+</html>
