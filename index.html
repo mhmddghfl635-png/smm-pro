@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#081321">
+<title>SMM PRO | لوحة التسويق الرقمي</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;600;700;800;900&display=swap');
+:root{
+  --bg:#07111f;--panel:#0d1b2b;--panel2:#102238;--line:#1c334a;
+  --text:#f2f7fc;--muted:#91a6bb;--teal:#20d4c2;--blue:#38bdf8;
+  --green:#35c98b;--yellow:#f5c45e;--red:#f07878;--radius:17px;
+  --shadow:0 18px 50px rgba(0,0,0,.22)
+}
+*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at 75% -15%,#123651 0,transparent 36%),var(--bg);color:var(--text);font-family:'Tajawal',Tahoma,Arial,sans-serif;line-height:1.65}
+button,input,select,textarea{font:inherit}
+button{cursor:pointer}
+a{color:inherit;text-decoration:none}
+.layout{display:flex;min-height:100vh}
+.sidebar{width:260px;flex:0 0 260px;background:rgba(8,20,34,.96);border-left:1px solid var(--line);padding:22px 15px;position:fixed;right:0;top:0;bottom:0;overflow-y:auto;z-index:20}
+.brand{display:flex;align-items:center;gap:11px;padding:4px 10px 25px;border-bottom:1px solid var(--line);margin-bottom:20px}
+.brand-mark{width:42px;height:42px;border-radius:13px;background:linear-gradient(135deg,var(--blue),var(--teal));display:grid;place-items:center;color:#06202a;font-weight:900;font-size:19px;box-shadow:0 7px 22px #20d4c233}
+.brand-name{font-size:22px;font-weight:900;letter-spacing:.4px}.brand-name span{color:var(--teal)}
+.side-label{font-size:11px;color:#6f879d;padding:13px 12px 7px;font-weight:800}
+.nav{display:grid;gap:5px}
+.nav button{width:100%;border:0;background:transparent;color:#a9bbcc;text-align:right;padding:11px 13px;border-radius:11px;display:flex;align-items:center;gap:12px;font-size:14px;font-weight:600;transition:.2s}
+.nav button:hover,.nav button.active{background:linear-gradient(90deg,#12344a,#102b3d);color:#fff}
+.nav button.active{box-shadow:inset -3px 0 var(--teal)}
+.nav .ico{width:22px;text-align:center;font-size:17px}
+.sidebar-note{margin:24px 5px 5px;padding:14px;border:1px solid #245064;background:#0c2634;border-radius:14px;color:#a9c4d3;font-size:12px}
+.sidebar-note b{display:block;color:var(--teal);margin-bottom:5px}
+.main{width:calc(100% - 260px);margin-right:260px;min-width:0}
+.topbar{height:76px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 30px;background:#091727cc;position:sticky;top:0;z-index:10;backdrop-filter:blur(14px)}
+.top-right{display:flex;align-items:center;gap:12px}
+.menu-btn{display:none;background:transparent;border:1px solid var(--line);color:white;border-radius:10px;padding:8px 11px}
+.breadcrumb{color:var(--muted);font-size:13px}.breadcrumb b{color:#fff}
+.top-actions{display:flex;align-items:center;gap:10px}
+.status-pill{border:1px solid #245344;background:#102c2b;color:#71e1b8;border-radius:30px;padding:6px 11px;font-size:12px}
+.avatar{width:37px;height:37px;border-radius:50%;display:grid;place-items:center;background:#173c52;color:var(--teal);font-weight:900}
+.content{padding:28px 30px 50px;max-width:1500px;margin:auto}
+.page{display:none;animation:fade .25s ease}.page.active{display:block}
+@keyframes fade{from{opacity:.4;transform:translateY(5px)}to{opacity:1;transform:none}}
+.page-head{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:23px}
+.page-head h1{font-size:25px;margin:0 0 5px;font-weight:900}
+.page-head p{margin:0;color:var(--muted);font-size:14px}
+.btn{border:0;border-radius:11px;padding:10px 17px;font-weight:800;font-size:13px;display:inline-flex;align-items:center;justify-content:center;gap:7px}
+.btn-primary{background:linear-gradient(135deg,var(--blue),var(--teal));color:#06202a;box-shadow:0 8px 22px #20d4c222}
+.btn-secondary{background:#14283c;border:1px solid var(--line);color:#dce9f4}
+.btn-danger{background:#3a2028;border:1px solid #63313d;color:#ffb3b3}
+.grid{display:grid;gap:16px}
+.stats{grid-template-columns:repeat(4,minmax(0,1fr));margin-bottom:19px}
+.card{background:linear-gradient(145deg,#102238,#0b1a2a);border:1px solid var(--line);border-radius:var(--radius);padding:19px;box-shadow:var(--shadow)}
+.stat-card{position:relative;overflow:hidden}
+.stat-card:after{content:"";position:absolute;width:95px;height:95px;border-radius:50%;background:#20d4c20b;left:-25px;top:-30px}
+.stat-top{display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:13px}
+.stat-icon{width:38px;height:38px;border-radius:12px;background:#18394b;display:grid;place-items:center;font-size:18px}
+.stat-value{font-size:27px;font-weight:900;margin-top:12px}
+.stat-foot{font-size:11px;color:#7e98ad;margin-top:2px}
+.two-col{grid-template-columns:1.4fr 1fr}
+.card-title{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.card-title h3{font-size:16px;margin:0;font-weight:800}
+.card-title span{font-size:12px;color:var(--muted)}
+.quick-grid{grid-template-columns:repeat(3,1fr)}
+.quick{padding:17px;border:1px solid var(--line);border-radius:14px;background:#0d1c2c;text-align:right;transition:.2s}
+.quick:hover{border-color:#2b8792;transform:translateY(-2px)}
+.quick .qico{font-size:23px;margin-bottom:7px}.quick b{display:block;font-size:14px}.quick small{color:var(--muted);font-size:11px}
+.notice{padding:13px 15px;border-radius:12px;border:1px solid #66532d;background:#2a2518;color:#e9d6a2;font-size:12px;margin-bottom:18px}
+.form-card{max-width:850px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.field{display:grid;gap:7px}.field.full{grid-column:1/-1}
+.field label{font-size:13px;color:#c3d2df;font-weight:700}
+.field input,.field select,.field textarea,.search{width:100%;background:#081625;border:1px solid #294158;border-radius:10px;padding:12px 13px;color:#f2f7fc;outline:none}
+.field input:focus,.field select:focus,.field textarea:focus,.search:focus{border-color:var(--teal);box-shadow:0 0 0 3px #20d4c214}
+.field select option{background:#102238}
+.help{font-size:11px;color:var(--muted)}
+.cost-box{background:#0a2730;border:1px solid #1e5c60;padding:14px;border-radius:12px;display:flex;justify-content:space-between;align-items:center}
+.cost-box b{color:var(--teal);font-size:20px}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:13px}
+table{width:100%;border-collapse:collapse;min-width:600px;font-size:13px}
+th,td{padding:13px 14px;text-align:right;border-bottom:1px solid #1b3044}
+th{background:#102238;color:#a9bed0;font-weight:800}
+td{color:#dbe6ef}tr:last-child td{border-bottom:0}
+.badge{display:inline-block;border-radius:30px;padding:4px 9px;font-size:11px;font-weight:800}
+.badge.pending{background:#3b321c;color:#f4d27a}.badge.done{background:#123a30;color:#71e1b8}.badge.cancel{background:#3c2228;color:#f49ca5}.badge.demo{background:#1c3349;color:#a9c8e0}
+.service-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+.service-card{padding:18px;border:1px solid var(--line);background:#0e1e30;border-radius:15px}
+.service-card .platform{font-size:25px}.service-card h3{margin:8px 0 4px;font-size:16px}.service-card p{margin:0 0 13px;color:var(--muted);font-size:12px}
+.service-meta{display:flex;justify-content:space-between;align-items:center;color:#b7cad9;font-size:12px}
+.price{color:var(--teal);font-weight:900}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px}.toolbar .search{max-width:300px}
+.empty{padding:35px;text-align:center;color:var(--muted)}
+.empty .big{font-size:35px;margin-bottom:8px}
+.wallet-balance{background:linear-gradient(125deg,#0d4051,#0d293e);border:1px solid #246071;padding:24px;border-radius:17px;margin-bottom:17px}
+.wallet-balance small{color:#b0d5df}.wallet-balance h2{font-size:34px;margin:6px 0;color:#fff}
+.wallet-balance p{font-size:11px;color:#a4c4d0;margin:0}
+.ticket-box{display:grid;grid-template-columns:1fr auto;gap:10px}
+.ticket-box textarea{min-height:100px}
+.profile-row{display:flex;align-items:center;gap:14px;margin-bottom:20px}.profile-avatar{width:58px;height:58px;border-radius:18px;background:#173d52;display:grid;place-items:center;font-size:25px;color:var(--teal)}
+.admin-grid{grid-template-columns:repeat(3,1fr)}
+footer{text-align:center;color:#61788e;font-size:11px;padding:20px;border-top:1px solid var(--line);margin-top:35px}
+.toast{position:fixed;bottom:22px;left:22px;background:#123a34;border:1px solid #267b69;color:#b6f3df;padding:12px 17px;border-radius:12px;box-shadow:var(--shadow);z-index:60;display:none;font-size:13px}
+.mobile-overlay{display:none}
+@media(max-width:1050px){.stats{grid-template-columns:repeat(2,1fr)}.service-grid{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}}
+@media(max-width:720px){
+ .sidebar{transform:translateX(105%);transition:.25s;width:270px}.sidebar.open{transform:translateX(0)}
+ .mobile-overlay.show{display:block;position:fixed;inset:0;background:#0009;z-index:15}
+ .main{width:100%;margin:0}.topbar{height:65px;padding:0 15px}.menu-btn{display:block}
+ .content{padding:22px 14px 35px}.page-head h1{font-size:22px}.stats{gap:10px}.card{padding:15px}
+ .quick-grid{grid-template-columns:repeat(2,1fr)}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}
+ .service-grid{grid-template-columns:1fr}.page-head{align-items:center}.status-pill{display:none}
+ .admin-grid{grid-template-columns:1fr}.ticket-box{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+<div class="mobile-overlay" id="overlay" onclick="toggleSidebar()"></div>
+<div class="layout">
+<aside class="sidebar" id="sidebar">
+  <div class="brand"><div class="brand-mark">S</div><div class="brand-name">SMM <span>PRO</span></div></div>
+  <div class="side-label">القائمة الرئيسية</div>
+  <nav class="nav">
+    <button class="active" data-page="dashboard"><span class="ico">▦</span> لوحة التحكم</button>
+    <button data-page="new-order"><span class="ico">＋</span> طلب جديد</button>
+    <button data-page="services"><span class="ico">◈</span> الخدمات</button>
+    <button data-page="orders"><span class="ico">▤</span> طلباتي</button>
+  </nav>
+  <div class="side-label">الحساب والمحفظة</div>
+  <nav class="nav">
+    <button data-page="wallet"><span class="ico">◉</span> المحفظة وإضافة الرصيد</button>
+    <button data-page="transactions"><span class="ico">↔</span> سجل المعاملات</button>
+    <button data-page="referrals"><span class="ico">♧</span> الإحالات والمكافآت</button>
+  </nav>
+  <div class="side-label">المساعدة</div>
+  <nav class="nav">
+    <button data-page="support"><span class="ico">✉</span> الدعم الفني</button>
+    <button data-page="profile"><span class="ico">♙</span> الملف الشخصي</button>
+  </nav>
+  <div class="side-label">الإدارة</div>
+  <nav class="nav"><button data-page="admin"><span class="ico">⚙</span> لوحة الإدارة التجريبية</button></nav>
+  <div class="sidebar-note"><b>نسخة تجريبية</b> هذه واجهة أولية للعرض والتجربة. لا يتم تنفيذ مدفوعات أو إرسال طلبات حقيقية قبل ربط الخادم وقاعدة البيانات.</div>
+</aside>
+
+<main class="main">
+<header class="topbar">
+  <div class="top-right"><button class="menu-btn" onclick="toggleSidebar()">☰</button><div class="breadcrumb">SMM PRO <span> / </span> <b id="crumb">لوحة التحكم</b></div></div>
+  <div class="top-actions"><span class="status-pill">● النظام التجريبي يعمل</span><div class="avatar">م</div></div>
+</header>
+
+<div class="content">
+<section class="page active" id="dashboard">
+ <div class="page-head"><div><h1>مرحباً بك في SMM PRO 👋</h1><p>لوحة موحدة لإدارة خدمات التسويق الرقمي ومتابعة طلباتك.</p></div><button class="btn btn-primary" onclick="showPage('new-order')">＋ إنشاء طلب</button></div>
+ <div class="notice">تنبيه: هذه نسخة واجهة تجريبية. الأرصدة والأسعار والطلبات المعروضة أمثلة توضيحية وليست معاملات مالية حقيقية.</div>
+ <div class="grid stats">
+  <div class="card stat-card"><div class="stat-top"><span>الرصيد الحالي</span><span class="stat-icon">◉</span></div><div class="stat-value">0.00 <small style="font-size:12px;color:#91a6bb">USD</small></div><div class="stat-foot">رصيد تجريبي</div></div>
+  <div class="card stat-card"><div class="stat-top"><span>إجمالي الطلبات</span><span class="stat-icon">▤</span></div><div class="stat-value" id="statOrders">0</div><div class="stat-foot">طلباتك المسجلة في هذا المتصفح</div></div>
+  <div class="card stat-card"><div class="stat-top"><span>طلبات قيد التنفيذ</span><span class="stat-icon">◷</span></div><div class="stat-value" id="statPending">0</div><div class="stat-foot">تجريبية فقط</div></div>
+  <div class="card stat-card"><div class="stat-top"><span>الطلبات المكتملة</span><span class="stat-icon">✓</span></div><div class="stat-value">0</div><div class="stat-foot">لا توجد بيانات حقيقية بعد</div></div>
+ </div>
+ <div class="grid two-col">
+  <div class="card"><div class="card-title"><h3>الوصول السريع</h3><span>اختر الإجراء</span></div><div class="grid quick-grid">
+   <button class="quick" onclick="showPage('new-order')"><div class="qico">＋</div><b>طلب جديد</b><small>إنشاء طلب تجريبي</small></button>
+   <button class="quick" onclick="showPage('services')"><div class="qico">◈</div><b>تصفح الخدمات</b><small>عرض الكتالوج</small></button>
+   <button class="quick" onclick="showPage('orders')"><div class="qico">▤</div><b>متابعة الطلبات</b><small>عرض سجل الطلبات</small></button>
+   <button class="quick" onclick="showPage('wallet')"><div class="qico">◉</div><b>المحفظة</b><small>خيارات الشحن التجريبية</small></button>
+   <button class="quick" onclick="showPage('support')"><div class="qico">✉</div><b>الدعم الفني</b><small>إرسال استفسار تجريبي</small></button>
+   <button class="quick" onclick="showPage('profile')"><div class="qico">♙</div><b>حسابي</b><small>بيانات الملف الشخصي</small></button>
+  </div></div>
+  <div class="card"><div class="card-title"><h3>آخر الطلبات</h3><button class="btn btn-secondary" onclick="showPage('orders')">عرض الكل</button></div><div id="recentOrders" class="empty"><div class="big">📋</div>لا توجد طلبات حتى الآن<br><small>عند إنشاء طلب تجريبي سيظهر هنا.</small></div></div>
+ </div>
+</section>
+
+<section class="page" id="new-order">
+ <div class="page-head"><div><h1>إنشاء طلب جديد</h1><p>اختر الخدمة وأدخل البيانات المطلوبة لمعاينة تكلفة الطلب.</p></div></div>
+ <div class="notice">الطلب هنا للتجربة فقط ولن يتم إرساله إلى أي مزود خدمة أو تنفيذه فعلياً.</div>
+ <div class="card form-card">
+  <div class="form-grid">
+   <div class="field"><label>المنصة</label><select id="platform" onchange="filterServices()"><option value="">اختر المنصة</option><option>TikTok</option><option>Instagram</option><option>YouTube</option><option>Facebook</option><option>X / Twitter</option><option>Telegram</option><option>Snapchat</option><option>Threads</option><option>Twitch</option><option>Spotify</option></select></div>
+   <div class="field"><label>نوع الخدمة</label><select id="service" onchange="updateCost()"><option value="">اختر الخدمة</option></select></div>
+   <div class="field full"><label>رابط الحساب أو المحتوى</label><input id="link" type="url" placeholder="https://..." dir="ltr"><span class="help">أدخل رابطاً عاماً تملك حق الترويج له.</span></div>
+   <div class="field"><label>الكمية / عدد الوحدات</label><input id="quantity" type="number" min="1" max="100000" value="1" oninput="updateCost()"></div>
+   <div class="field"><label>ملاحظات (اختياري)</label><input id="notes" placeholder="اكتب أي تفاصيل إضافية"></div>
+   <div class="field full"><div class="cost-box"><span>التكلفة التقديرية</span><b id="cost">$0.00</b></div></div>
+   <div class="field full"><button class="btn btn-primary" onclick="createOrder()">معاينة وتسجيل طلب تجريبي</button></div>
+  </div>
+ </div>
+</section>
+
+<section class="page" id="services">
+ <div class="page-head"><div><h1>كتالوج الخدمات</h1><p>خدمات تسويق وإدارة محتوى وتحليل أداء مشروعة.</p></div></div>
+ <div class="toolbar"><input class="search" id="serviceSearch" placeholder="ابحث عن منصة أو خدمة..." oninput="renderServices()"><select class="search" id="serviceFilter" onchange="renderServices()" style="max-width:210px"><option value="">كل المنصات</option><option>TikTok</option><option>Instagram</option><option>YouTube</option><option>Facebook</option><option>X / Twitter</option><option>Telegram</option><option>Snapchat</option><option>Threads</option><option>Twitch</option><option>Spotify</option></select></div>
+ <div class="grid service-grid" id="serviceCards"></div>
+</section>
+
+<section class="page" id="orders">
+ <div class="page-head"><div><h1>طلباتي</h1><p>راجع الطلبات التي سجلتها في هذه النسخة التجريبية.</p></div><button class="btn btn-primary" onclick="showPage('new-order')">＋ طلب جديد</button></div>
+ <div class="card"><div class="table-wrap"><table><thead><tr><th>رقم الطلب</th><th>الخدمة</th><th>الرابط</th><th>الكمية</th><th>التكلفة</th><th>الحالة</th></tr></thead><tbody id="ordersBody"><tr><td colspan="6" class="empty">لا توجد طلبات بعد.</td></tr></tbody></table></div></div>
+</section>
+
+<section class="page" id="wallet">
+ <div class="page-head"><div><h1>المحفظة وإضافة الرصيد</h1><p>إدارة الرصيد وسجل الشحن بعد ربط بوابة دفع معتمدة.</p></div></div>
+ <div class="wallet-balance"><small>الرصيد المتاح</small><h2>$0.00</h2><p>لا يوجد رصيد مالي فعلي في النسخة التجريبية.</p></div>
+ <div class="grid two-col">
+  <div class="card"><div class="card-title"><h3>طلب إضافة رصيد</h3><span class="badge demo">غير مفعّل</span></div><div class="field"><label>المبلغ المطلوب (USD)</label><input type="number" min="1" placeholder="مثال: 10" id="topupAmount"></div><p class="help">سيتم تفعيل الشحن بعد اختيار مزود دفع وربطه والتحقق من المتطلبات القانونية.</p><button class="btn btn-secondary" style="margin-top:13px" onclick="toast('إضافة الرصيد غير مفعّلة في النسخة التجريبية')">متابعة (تجريبي)</button></div>
+  <div class="card"><div class="card-title"><h3>طرق الدفع</h3></div><div class="empty"><div class="big">🔒</div>لم تتم إضافة بوابة دفع بعد.<br><small>لن نعرض وسائل دفع غير مهيأة.</small></div></div>
+ </div>
+</section>
+
+<section class="page" id="transactions">
+ <div class="page-head"><div><h1>سجل المعاملات</h1><p>سجل عمليات المحفظة والشحن والخصومات.</p></div></div>
+ <div class="card"><div class="empty"><div class="big">↔</div>لا توجد معاملات مسجلة.</div></div>
+</section>
+
+<section class="page" id="referrals">
+ <div class="page-head"><div><h1>الإحالات والمكافآت</h1><p>برنامج مكافآت يمكن تفعيله بعد تحديد الشروط ومنع إساءة الاستخدام.</p></div></div>
+ <div class="grid two-col"><div class="card"><h3>رابط الإحالة</h3><p class="help">سيتم إنشاء رابط خاص بعد تفعيل الحسابات.</p><div class="cost-box"><span>رابطك</span><b style="font-size:13px">غير متاح حالياً</b></div></div><div class="card"><h3>نقاط المكافآت</h3><div class="stat-value">0</div><p class="help">لا توجد نقاط حتى الآن.</p></div></div>
+</section>
+
+<section class="page" id="support">
+ <div class="page-head"><div><h1>الدعم الفني</h1><p>اكتب استفسارك؛ سيتم حفظه محلياً في هذا المتصفح فقط.</p></div></div>
+ <div class="card form-card"><div class="field"><label>عنوان الرسالة</label><input id="ticketTitle" placeholder="مثال: استفسار عن خدمة"></div><div class="field" style="margin-top:14px"><label>تفاصيل الرسالة</label><textarea id="ticketMessage" rows="5" placeholder="اكتب تفاصيل استفسارك..."></textarea></div><button class="btn btn-primary" style="margin-top:15px" onclick="sendTicket()">حفظ رسالة تجريبية</button><div id="ticketResult"></div></div>
+</section>
+
+<section class="page" id="profile">
+ <div class="page-head"><div><h1>الملف الشخصي</h1><p>بيانات الحساب التجريبية.</p></div></div>
+ <div class="card form-card"><div class="profile-row"><div class="profile-avatar">م</div><div><b>زائر SMM PRO</b><div class="help">حساب تجريبي غير مسجل</div></div></div><div class="notice">تسجيل الدخول وإنشاء الحساب غير مفعّلين بعد. سيتم تفعيلهما بعد إعداد Supabase وسياسات حماية الحسابات.</div><div class="form-grid"><div class="field"><label>الاسم</label><input placeholder="اسم العميل" disabled></div><div class="field"><label>البريد الإلكتروني</label><input placeholder="name@example.com" disabled></div></div></div>
+</section>
+
+<section class="page" id="admin">
+ <div class="page-head"><div><h1>لوحة الإدارة</h1><p>واجهة معاينة لإدارة المنصة. لا توجد صلاحيات إدارية أو قاعدة بيانات متصلة بعد.</p></div><span class="badge demo">وضع المعاينة</span></div>
+ <div class="notice">هذه الصفحة ليست محمية بتسجيل دخول في الوقت الحالي، لذلك لا تضع فيها بيانات حقيقية ولا تعتبرها لوحة إدارة جاهزة للإنتاج. سنضيف صلاحيات مدير آمنة من الخادم لاحقاً.</div>
+ <div class="grid admin-grid">
+  <div class="card"><div class="stat-top">إدارة المستخدمين <span class="stat-icon">♙</span></div><h2>قريباً</h2><p class="help">عرض الحسابات وتفعيلها وإدارة الصلاحيات.</p></div>
+  <div class="card"><div class="stat-top">إدارة الخدمات <span class="stat-icon">◈</span></div><h2 id="adminServiceCount">10</h2><p class="help">خدمات نموذجية قابلة للتعديل بعد ربط قاعدة البيانات.</p></div>
+  <div class="card"><div class="stat-top">إدارة الطلبات <span class="stat-icon">▤</span></div><h2 id="adminOrderCount">0</h2><p class="help">طلبات تجريبية محفوظة على هذا الجهاز.</p></div>
+ </div>
+ <div class="card" style="margin-top:16px"><h3>مراحل التفعيل المطلوبة</h3><p class="help">قاعدة بيانات ومصادقة • صلاحيات مدير من جهة الخادم • مزود خدمات موثوق • بوابة دفع • سجل تدقيق وحماية من إساءة الاستخدام.</p></div>
+</section>
+<footer>© 2026 SMM PRO — منصة لخدمات التسويق الرقمي وإدارة المحتوى. جميع الأسعار والطلبات في هذه النسخة تجريبية.</footer>
+</div>
+</main>
+</div>
+<div class="toast" id="toast"></div>
+<script>
+const catalog=[
+ {platform:'TikTok',icon:'🎵',name:'إعداد خطة محتوى TikTok',desc:'خطة أفكار وجدول نشر يناسب جمهور الحساب.',price:8,unit:'للحساب'},
+ {platform:'TikTok',icon:'🎵',name:'تحليل أداء حساب TikTok',desc:'مراجعة المحتوى ومؤشرات الأداء وتوصيات التحسين.',price:12,unit:'للتقرير'},
+ {platform:'Instagram',icon:'📸',name:'تصميم منشورات Instagram',desc:'تصميمات أصلية متناسقة مع الهوية البصرية.',price:5,unit:'للتصميم'},
+ {platform:'Instagram',icon:'📸',name:'إدارة محتوى Instagram',desc:'تقويم محتوى وكتابة وصف وجدولة منشورات.',price:25,unit:'للأسبوع'},
+ {platform:'YouTube',icon:'▶️',name:'تحسين قناة YouTube',desc:'مراجعة القناة والعناوين والوصف والصورة المصغرة.',price:15,unit:'للتقرير'},
+ {platform:'YouTube',icon:'▶️',name:'تصميم صورة مصغرة',desc:'صورة مصغرة أصلية للفيديو.',price:6,unit:'للتصميم'},
+ {platform:'Facebook',icon:'👥',name:'إدارة صفحة Facebook',desc:'تنظيم الصفحة وإعداد خطة منشورات.',price:20,unit:'للأسبوع'},
+ {platform:'X / Twitter',icon:'𝕏',name:'كتابة محتوى لمنصة X',desc:'صياغة منشورات أصلية متوافقة مع هوية الحساب.',price:10,unit:'لحزمة 5 منشورات'},
+ {platform:'Telegram',icon:'✈️',name:'إعداد وإدارة قناة Telegram',desc:'تنسيق القناة وإعداد خطة نشر ومحتوى.',price:18,unit:'للأسبوع'},
+ {platform:'Snapchat',icon:'👻',name:'تصميم قصص Snapchat',desc:'تصميم قصص إعلانية عمودية أصلية.',price:7,unit:'للتصميم'},
+ {platform:'Threads',icon:'🧵',name:'خطة محتوى Threads',desc:'أفكار وصياغة منشورات لبناء حضور مهني.',price:9,unit:'للخطة'},
+ {platform:'Twitch',icon:'🎮',name:'تصميم هوية قناة Twitch',desc:'حزمة عناصر بصرية للقناة والبث.',price:30,unit:'للحزمة'},
+ {platform:'Spotify',icon:'🎧',name:'تصميم غلاف Spotify',desc:'تصميم غلاف فني أصلي وفق المقاسات المطلوبة.',price:12,unit:'للتصميم'}
+];
+let orders=JSON.parse(localStorage.getItem('smmpro_orders')||'[]');
+function showPage(id){
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ const page=document.getElementById(id);if(!page)return;
+ page.classList.add('active');
+ document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+ const active=document.querySelector('.nav button.active');
+ document.getElementById('crumb').textContent=active?active.textContent.trim():page.querySelector('h1')?.textContent||'SMM PRO';
+ toggleSidebar(false);window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('.nav button').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+function toggleSidebar(force){
+ const s=document.getElementById('sidebar'),o=document.getElementById('overlay');
+ if(force===false){s.classList.remove('open');o.classList.remove('show');return}
+ s.classList.toggle('open');o.classList.toggle('show');
+}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.style.display='block';clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>t.style.display='none',2800)}
+function renderServices(){
+ const q=(document.getElementById('serviceSearch')?.value||'').toLowerCase();
+ const f=document.getElementById('serviceFilter')?.value||'';
+ const list=catalog.filter(s=>(!f||s.platform===f)&&(`${s.platform} ${s.name} ${s.desc}`).toLowerCase().includes(q));
+ document.getElementById('serviceCards').innerHTML=list.map((s,i)=>`<div class="service-card"><div class="platform">${s.icon}</div><h3>${s.name}</h3><p>${s.desc}</p><div class="service-meta"><span>${s.platform}</span><span class="price">ابتداءً من $${s.price}</span></div><button class="btn btn-secondary" style="margin-top:14px;width:100%" onclick="chooseService(${catalog.indexOf(s)})">تفاصيل / طلب</button></div>`).join('')||'<div class="empty">لا توجد خدمات مطابقة للبحث.</div>';
+}
+function chooseService(i){const s=catalog[i];showPage('new-order');document.getElementById('platform').value=s.platform;filterServices();document.getElementById('service').value=String(i);updateCost()}
+function filterServices(){
+ const p=document.getElementById('platform').value,sel=document.getElementById('service');
+ sel.innerHTML='<option value="">اختر الخدمة</option>'+catalog.map((s,i)=>({...s,i})).filter(s=>!p||s.platform===p).map(s=>`<option value="${s.i}">${s.name} — $${s.price} / ${s.unit}</option>`).join('');
+ updateCost();
+}
+function updateCost(){
+ const s=catalog[Number(document.getElementById('service').value)],q=Math.max(1,Number(document.getElementById('quantity').value)||1);
+ document.getElementById('cost').textContent=s?'$'+(s.price*q).toFixed(2):'$0.00';
+}
+function createOrder(){
+ const i=document.getElementById('service').value,link=document.getElementById('link').value.trim(),q=Math.max(1,Number(document.getElementById('quantity').value)||1);
+ if(i===''||!link){toast('اختر الخدمة وأدخل الرابط أولاً');return}
+ try{new URL(link)}catch(e){toast('يرجى إدخال رابط صحيح يبدأ بـ https://');return}
+ const s=catalog[Number(i)],o={id:'DEMO-'+Date.now().toString().slice(-7),name:s.name,platform:s.platform,link,qty:q,cost:(s.price*q).toFixed(2),status:'تجريبي',date:new Date().toLocaleDateString('ar')};
+ orders.unshift(o);localStorage.setItem('smmpro_orders',JSON.stringify(orders));
+ document.getElementById('link').value='';document.getElementById('notes').value='';
+ renderOrders();updateStats();toast('تم حفظ الطلب التجريبي على هذا الجهاز');showPage('orders');
+}
+function renderOrders(){
+ const body=document.getElementById('ordersBody'),recent=document.getElementById('recentOrders');
+ if(!orders.length){body.innerHTML='<tr><td colspan="6" class="empty">لا توجد طلبات بعد.</td></tr>';recent.innerHTML='<div class="empty"><div class="big">📋</div>لا توجد طلبات حتى الآن<br><small>عند إنشاء طلب تجريبي سيظهر هنا.</small></div>';return}
+ body.innerHTML=orders.map(o=>`<tr><td>${o.id}</td><td>${o.name}</td><td dir="ltr" style="max-width:160px;overflow:hidden;text-overflow:ellipsis">${o.link}</td><td>${o.qty}</td><td>$${o.cost}</td><td><span class="badge demo">${o.status}</span></td></tr>`).join('');
+ recent.innerHTML='<div class="table-wrap"><table style="min-width:0"><thead><tr><th>رقم الطلب</th><th>الخدمة</th><th>الحالة</th></tr></thead><tbody>'+orders.slice(0,4).map(o=>`<tr><td>${o.id}</td><td>${o.name}</td><td><span class="badge demo">تجريبي</span></td></tr>`).join('')+'</tbody></table></div>';
+}
+function updateStats(){
+ document.getElementById('statOrders').textContent=orders.length;
+ document.getElementById('statPending').textContent=orders.length;
+ document.getElementById('adminOrderCount').textContent=orders.length;
+}
+function sendTicket(){
+ const title=document.getElementById('ticketTitle').value.trim(),msg=document.getElementById('ticketMessage').value.trim();
+ if(!title||!msg){toast('اكتب عنوان الرسالة والتفاصيل');return}
+ document.getElementById('ticketResult').innerHTML='<div class="notice" style="margin-top:15px">تم تسجيل الرسالة كتجربة في الصفحة فقط. لم تُرسل إلى خادم الدعم.</div>';
+ document.getElementById('ticketTitle').value='';document.getElementById('ticketMessage').value='';
+}
+renderServices();renderOrders();updateStats();filterServices();
+</script>
+</body>
+  </html>
